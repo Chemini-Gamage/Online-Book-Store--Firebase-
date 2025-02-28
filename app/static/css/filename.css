@@ -1,0 +1,62 @@
+/* filename.css */
+
+/* Custom Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8fafc;
+    /* light background */
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Header Style */
+.header {
+    background-color: #1a202c;
+    /* Dark background */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Footer Style */
+.footer {
+    background-color: #2d3748;
+    /* Dark footer */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Content Styles */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Custom Button */
+.btn-primary {
+    background-color: #3182ce;
+    /* Blue button */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2b6cb0;
+}
+
+/* Add Tailwind Utility Styles */
+.text-primary {
+    color: #3182ce;
+}
+
+.mt-6 {
+    margin-top: 1.5rem;
+}
