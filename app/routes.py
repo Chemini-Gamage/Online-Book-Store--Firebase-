@@ -1,5 +1,5 @@
-from flask import jsonify,Blueprint,render_template,request
-from .forms import  AddBookForm
+from flask import url_for,jsonify,Blueprint,render_template,request,redirect
+from .forms import  AddBookForm,EditBookForm
 from markupsafe import Markup
 from app.firebase import db
 
@@ -42,6 +42,7 @@ def getBook():
 
 @main.route('/editBook/<book_id>', methods=['GET', 'POST'])
 def editBook(book_id):
+    form=EditBookForm()
     # Fetch the book from Firestore
     book_ref = db.collection("books").document(book_id)
     book = book_ref.get()
@@ -49,14 +50,24 @@ def editBook(book_id):
     if not book.exists:
         return jsonify({"error": "Book not found"}), 404
 
+    book_data=book.to_dict()
     if request.method == 'POST':
-        
-        data = request.form.to_dict()
-        book_ref.update(data)
-        return jsonify({"message": "Book updated successfully"})
+        data=request.form
+        book_ref.update({
+                        'title':data['title'],
+                        'author':data['author'],
+                            'genre':data['genre'],
+                            'publicationYear':data['publicationYear'],
+                            'image':data['image'],
+                            'isbn':data['isbn'],
+   
+        })
+        return redirect(url_for('main.getBook', book_id=book_id))
+        # flash("Book updated successfully!", "success")
+    # return jsonify({"message": "Book updated successfully"})
     
     # If GET request, show the book details to edit
-    return render_template('BookManagement/editBook/editBook.html', title="Edit Book", book=book.to_dict(), book_id=book_id)
+    return render_template('BookManagement/editBook/editBook.html', title="Edit Book", book=book.to_dict(), book_id=book_id,form=form)
 
 
 @main.route('/bookHome')
