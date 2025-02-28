@@ -36,24 +36,29 @@ def getBook():
             book=doc.to_dict()
             book["id"]=doc.id
             books.append(book)
-        return jsonify(books)   
-        # return render_template('BookManagement/addBook/addBook.html',title="AddBook",form=form)
+        #return jsonify(books)   
+        return render_template("BookManagement/bookList/getBook.html",title="BookList",books=books)
 
-@main.route('/editBook/<book_id>',methods=['PUT'])
+
+@main.route('/editBook/<book_id>', methods=['GET', 'POST'])
 def editBook(book_id):
-   
-   book_ref=db.collection("books").document(book_id)
-   book=book_ref.get()
-   if not book.exists:
-    return jsonify({"error:Book not found"}),404
-   
-   data=request.json
-   book_ref.update(data)
-   return jsonify({"message":"Book updated successfully"})
-   
-   return render_template('BookManagement/editBook/editBook.html',title="EditBook",form=form)
+    # Fetch the book from Firestore
+    book_ref = db.collection("books").document(book_id)
+    book = book_ref.get()
+    
+    if not book.exists:
+        return jsonify({"error": "Book not found"}), 404
+
+    if request.method == 'POST':
+        
+        data = request.form.to_dict()
+        book_ref.update(data)
+        return jsonify({"message": "Book updated successfully"})
+    
+    # If GET request, show the book details to edit
+    return render_template('BookManagement/editBook/editBook.html', title="Edit Book", book=book.to_dict(), book_id=book_id)
 
 
 @main.route('/bookHome')
 def bookHome():
-    return render_template("BookManagement/bookHome/bookHome.html",title="BookHome")
+    return render_template("BookManagement/bookList/getBook.html",title="BookList")
