@@ -70,6 +70,17 @@ def editBook(book_id):
     return render_template('BookManagement/editBook/editBook.html', title="Edit Book", book=book.to_dict(), book_id=book_id,form=form)
 
 
+@main.route('/deleteBook/<book_id>',methods=['POST'])
+def deleteBook(book_id):
+    book_ref=db.collection("books").document(book_id)
+    book=book_ref.get()
+    #error if no book
+    if not book.exists:
+     return jsonify({"error":"no book"})
+    book_ref.delete()
+
+    return redirect(url_for('main.getBook'))
+
 @main.route('/bookHome')
 def bookHome():
     return render_template("BookManagement/bookList/getBook.html",title="BookList")
