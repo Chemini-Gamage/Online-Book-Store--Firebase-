@@ -1,6 +1,7 @@
 
 from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField
+from wtforms.validators import DataRequired
 
 class AddBookForm(FlaskForm):
     title=StringField('Title')
@@ -12,10 +13,10 @@ class AddBookForm(FlaskForm):
     submit=SubmitField('AddBook')
 
 class EditBookForm(FlaskForm):
-    title=StringField('Title')
-    author=StringField('Author')
-    genre=StringField('Genre')
-    publicationYear=StringField('PublicationYear')
-    image=StringField('Image')
-    isbn=StringField('ISBN')
-    submit=SubmitField('AddBook')
+    title=StringField('Title',validators=[DataRequired()])
+    author=StringField('Author',validators=[DataRequired()])
+    genre=StringField('Genre',validators=[DataRequired()])
+    publicationYear=StringField('PublicationYear',validators=[DataRequired()])
+    image=StringField('Image',validators=[DataRequired()])
+    isbn=StringField('ISBN',validators=[DataRequired()])
+    submit=SubmitField('AddBook',validators=[DataRequired()])
