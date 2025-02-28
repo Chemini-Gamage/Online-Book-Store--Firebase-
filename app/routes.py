@@ -1,4 +1,4 @@
-from flask import jsonify,Blueprint,render_template
+from flask import jsonify,Blueprint,render_template,request
 from .forms import  AddBookForm
 from markupsafe import Markup
 from app.firebase import db
@@ -26,9 +26,33 @@ def addBook():
         return jsonify({"message":"book added successfully"})
     return render_template('BookManagement/addBook/addBook.html',title="AddBook",form=form)
 
-@main.route('/editBook')
-def editBook():
-    return render_template('BookManagement/editBook/editBook.html',title="EditBook",form=form)
+
+@main.route('/bookList',methods=['GET'])
+def getBook():
+        books_ref=db.collection("books")
+        docs=books_ref.stream()
+        books=[]
+        for doc in docs:
+            book=doc.to_dict()
+            book["id"]=doc.id
+            books.append(book)
+        return jsonify(books)   
+        # return render_template('BookManagement/addBook/addBook.html',title="AddBook",form=form)
+
+@main.route('/editBook/<book_id>',methods=['PUT'])
+def editBook(book_id):
+   
+   book_ref=db.collection("books").document(book_id)
+   book=book_ref.get()
+   if not book.exists:
+    return jsonify({"error:Book not found"}),404
+   
+   data=request.json
+   book_ref.update(data)
+   return jsonify({"message":"Book updated successfully"})
+   
+   return render_template('BookManagement/editBook/editBook.html',title="EditBook",form=form)
+
 
 @main.route('/bookHome')
 def bookHome():
