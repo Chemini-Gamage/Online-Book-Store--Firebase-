@@ -1,11 +1,69 @@
 body {
-    background-color: #f5f3ed;
+    background-color: rgb(253, 251, 255);
 }
 
 .container {
-    background-color: rgb(223, 220, 226);
-    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
     display: flex;
+    border-color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+}
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 48%;
 
 }
+
+/* Label Styling */
+.form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+.form-group input {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+
+}
+
+.form-group.custom-margin-1 {
+    margin-top: -90px;
+    margin-left: 480px;
+}
+
+.form-group.custom-margin-2 {
+    margin-top: -88px;
+    margin-left: 480px;
+}
+
+.form-group.custom-margin-3 {
+    margin-top: -85px;
+    margin-left: 480px;
+}
+
+.form-group.button {
+    color: rgb(13, 13, 123);
+}
+

@@ -1,36 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Add book page</h1>
+
 <form method="POST" action="/addBook">
+
+    <h5 style=" margin-left:400px;color: #6d2c2c;font-weight: bold;">Add book page</h5>
     {{form.hidden_tag()}}
     <div>
         <div class="form-group">
-            {{form.title.label}}
-            {{form.title(size=32)}}
+            {{ form.title.label }}
+            {{ form.title(size=32) }}
         </div>
+
+        <!-- Author field with custom margin -->
+        <div class="form-group custom-margin-1">
+            {{ form.author.label }}
+            {{ form.author(size=32) }}
+        </div>
+
+        <!-- Genre field -->
         <div class="form-group">
-            {{form.author.label}}
-            {{form.author(size=32)}}
+            {{ form.genre.label }}
+            {{ form.genre(size=32) }}
         </div>
+
+        <!-- Publication Year field with custom margin -->
+        <div class="form-group custom-margin-2">
+            {{ form.publicationYear.label }}
+            {{ form.publicationYear(size=32) }}
+        </div>
+
+        <!-- Image field -->
         <div class="form-group">
-            {{form.genre.label}}
-            {{form.genre(size=32)}}
+            {{ form.image.label }}
+            {{ form.image(size=32) }}
         </div>
-        {{form.publicationYear.label}}
-        {{form.publicationYear(size=32)}}
-    </div>
-    <div class="form-group">
-        {{form.image.label}}
-        {{form.image(size=32)}}
-    </div>
-    <div class="form-group">
-        {{form.isbn.label}}
-        {{form.isbn(size=32)}}
-    </div>
-    <div>
-        {{form.submit()}}
-    </div>
+
+        <!-- ISBN field with custom margin -->
+        <div class="form-group custom-margin-3">
+            {{ form.isbn.label }}
+            {{ form.isbn(size=32) }}
+        </div>
+        <div class="form-group button">
+            {{form.submit()}}
+        </div>
     </div>
 </form>
 {% endblock %}
