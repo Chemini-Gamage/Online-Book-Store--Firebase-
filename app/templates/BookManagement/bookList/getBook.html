@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Book List</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Title</th>
+
+            <th>author</th>
+
+            <th>genre</th>
+
+            <th>publicationYear</th>
+
+            <th>image</th>
+
+            <th>isbn</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for book in books %}
+        <tr>
+            <td>{{book.title}}</td>>
+            <td>{{book.author}}</td>>
+            <td>{{book.genre}}</td>>
+            <td>{{book.publicationYear}}</td>>
+            <td>{{book.image}}</td>>
+            <td>{{book.isbn}}</td>>
+            <td>
+                <a href="{{url_for('main.editBook',book_id=book.id)}}" onclick="return confirm('Are you sure')">Edit</a>
+                <form action="{{ url_for('main.deleteBook', book_id=book.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+
+            </td>>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

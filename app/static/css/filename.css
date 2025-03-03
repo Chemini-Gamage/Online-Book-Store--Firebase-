@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(216, 201, 164);
+}
+
+.container {
+    background-color: rgb(223, 220, 226);
+    border-radius: 10px;
+    display: flex;
+
+
+}
