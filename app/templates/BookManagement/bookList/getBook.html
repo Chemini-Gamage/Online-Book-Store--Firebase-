@@ -2,42 +2,42 @@
 
 {% block content %}
 <h1>Book List</h1>
-<table border="1">
-    <thead>
-        <tr>
-            <th>Title</th>
-
-            <th>author</th>
-
-            <th>genre</th>
-
-            <th>publicationYear</th>
-
-            <th>image</th>
-
-            <th>isbn</th>
-            <th>Actions</th>
-
-        </tr>
-    </thead>
-    <tbody>
+<div class="container-mt-2">
+    <div class="row">
         {%for book in books %}
-        <tr>
-            <td>{{book.title}}</td>>
-            <td>{{book.author}}</td>>
-            <td>{{book.genre}}</td>>
-            <td>{{book.publicationYear}}</td>>
-            <td>{{book.image}}</td>>
-            <td>{{book.isbn}}</td>>
-            <td>
-                <a href="{{url_for('main.editBook',book_id=book.id)}}" onclick="return confirm('Are you sure')">Edit</a>
-                <form action="{{ url_for('main.deleteBook', book_id=book.id) }}" method="POST" style="display:inline;">
-                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-                </form>
 
-            </td>>
-        </tr>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src=" {{book.image}} " style="width: 290px; height: 150px"
+                    alt="Card image cap">
+
+                <div class="card-body">
+                    <h5 class="card-title">Title:{{book.title}}</h5>
+                    <p class="card-text">Author:{{book.author}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <!-- <li class="list-group-item">{{book.image}}</li> -->
+                    <li class="list-group-item">Genre:{{book.genre}}</li>
+                    <li class="list-group-item">Pulished Year:{{book.publicationYear}}</li>
+                    <li class="list-group-item">ISBN:{{book.isbn}}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{{url_for('main.editBook',book_id=book.id)}}" onclick="return confirm('Are you sure')"
+                        class="card-link">edit</a>
+                    <form action="{{ url_for('main.deleteBook', book_id=book.id) }}" method="POST"
+                        style="display:inline;">
+                        <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div></div>
+        <div>
+        </div>
         {% endfor %}
-    </tbody>
-</table>
-{% endblock %}
+
+        <div>
+            {% endblock %}
