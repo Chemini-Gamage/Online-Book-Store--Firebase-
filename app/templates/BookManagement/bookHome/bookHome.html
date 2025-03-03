@@ -1,16 +1,53 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Book Home</h1>
-<a href="addBook">
-    <button type="button" class="btn btn-primary">Add Book</button>
-</a>
-<a href="addBook">
-    <button type="button" class="btn btn-primary">Edit Book</button>
-</a>
-<a href="bookList">
-    <button type="button" class="btn btn-primary">Book List</button>
-</a>
+<div class="homecontainer"><a href="addBook">
+        <button type="button" class="btn btn-primary">Add Book</button>
+    </a>
+    <!-- <a href="addBook">
+        <button type="button" class="btn btn-primary">Edit Book</button>
+    </a> -->
+    <!-- <a href="bookList">
+        <button type="button" class="btn btn-primary">Book List</button>
+    </a> -->
+
+    <div class="container-mt-2">
+        <h4 style="margin-top: 20px;align-content: center;">Hi, These are the books that you have added</h4>
+        <div class="row">
+            {%for book in books %}
+
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src=" {{book.image}} " style="width: 290px; height: 150px"
+                        alt="Card image cap">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Title:{{book.title}}</h5>
+                        <p class="card-text">Author:{{book.author}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <!-- <li class="list-group-item">{{book.image}}</li> -->
+                        <li class="list-group-item">Genre:{{book.genre}}</li>
+                        <li class="list-group-item">Pulished Year:{{book.publicationYear}}</li>
+                        <li class="list-group-item">ISBN:{{book.isbn}}</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="{{url_for('main.editBook',book_id=book.id)}}" onclick="return confirm('Are you sure')"
+                            class="card-link">edit</a>
+                        <form action="{{ url_for('main.deleteBook', book_id=book.id) }}" method="POST"
+                            style="display:inline;">
+                            <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </div>
+                </div>
 
 
-{% endblock %}
+
+            </div>
+            <div></div>
+            <div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% endblock %}
