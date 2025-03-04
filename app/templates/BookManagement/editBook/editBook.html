@@ -1,28 +1,57 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Add book page</h1>
-<h2>Edit Book</h2>
-<form method="POST">
-    <label for="title">Title</label>
-    <input type="text" id="title" name="title" value="{{ book.title }}" required><br><br>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/editBook.css') }}">
 
-    <label for="author">Author</label>
-    <input type="text" id="author" name="author" value="{{ book.author }}" required><br><br>
+<div class="container mt-5">
 
-    <label for="genre">Genre</label>
-    <input type="text" id="genre" name="genre" value="{{ book.genre }}" required><br><br>
+    <form method="POST">
+        <h2 class="text-center">Edit Book</h2>
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-md-6">
 
-    <label for="publicationYear">Publication Year</label>
-    <input type="text" id="publicationYear" name="publicationYear" value="{{ book.publicationYear }}" required><br><br>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ book.title }}" required>
+                </div>
 
-    <label for="image">Image</label>
-    <input type="text" id="image" name="image" value="{{ book.image }}" required><br><br>
+                <div class="mb-3">
+                    <label for="author" class="form-label">Author</label>
+                    <input type="text" class="form-control" id="author" name="author" value="{{ book.author }}"
+                        required>
+                </div>
 
-    <label for="isbn">ISBN</label>
-    <input type="text" id="isbn" name="isbn" value="{{ book.isbn }}" required><br><br>
+                <div class="mb-3">
+                    <label for="genre" class="form-label">Genre</label>
+                    <input type="text" class="form-control" id="genre" name="genre" value="{{ book.genre }}" required>
+                </div>
+            </div>
 
-    <button type="submit">Update Book</button>
-    </div>
-</form>
+            <!-- Right Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="publicationYear" class="form-label">Publication Year</label>
+                    <input type="text" class="form-control" id="publicationYear" name="publicationYear"
+                        value="{{ book.publicationYear }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image URL</label>
+                    <input type="text" class="form-control" id="image" name="image" value="{{ book.image }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="isbn" class="form-label">ISBN</label>
+                    <input type="text" class="form-control" id="isbn" name="isbn" value="{{ book.isbn }}" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary">Update Book</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
