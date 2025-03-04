@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="homecontainer"><a href="addBook">
-        <button type="button" class="btn btn-primary">Add Book</button>
+        <!-- <button type="button" class="btn btn-primary">Add Book</button> -->
     </a>
     <!-- <a href="addBook">
         <button type="button" class="btn btn-primary">Edit Book</button>
@@ -12,7 +12,8 @@
     </a> -->
 
     <div class="container-mt-2">
-        <h4 style="margin-top: 20px;align-content: center;">Hi, These are the books that you have added</h4>
+        <h4 style="margin-top: 20px;text-align: center;">Dive into the World of Stories – Your Personal Library
+            Awaits!</h4>
         <div class="row">
             {%for book in books %}
 
@@ -32,12 +33,24 @@
                         <li class="list-group-item">ISBN:{{book.isbn}}</li>
                     </ul>
                     <div class="card-body">
-                        <a href="{{url_for('main.editBook',book_id=book.id)}}" onclick="return confirm('Are you sure')"
-                            class="card-link">edit</a>
-                        <form action="{{ url_for('main.deleteBook', book_id=book.id) }}" method="POST"
-                            style="display:inline;">
-                            <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                        <form action="{{url_for('main.editBook',book_id=book.id)}}"
+                            onclick="return confirm('Are you sure')">
+                            <button class="btn btn-secondary" type="submit"
+                                onclick="return confirm('Are you sure?')">Read</button>
                         </form>
+
+                        <!-- <form action="{{ url_for('main.deleteBook', book_id=book.id) }}" method="POST"
+                            style="display:flex;margin-left: 60px;margin-top:-38px;">
+                            <button class="btn btn-warning" type="submit"
+                                onclick="return confirm('Are you sure?')">Delete</button>
+                        </form> -->
+
+
+                        <svg style="margin-left:200px;margin-top: -70px;" xmlns="http://www.w3.org/2000/svg" color="red"
+                            width="20" height="20" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                        </svg>
                     </div>
                 </div>
 
