@@ -1,44 +1,62 @@
-{% extends "base.html" %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/getBook.css')}}">
+
 
 {% block content %}
+<p style="margin-top: 20px;margin-left: 500px;">Book List</p>
+<div class="addButton">
+    <a href="/addBook" class="btn btn-primary">Add Book</a>
 
-<div class="container-mt-2">
-    <h4 style="margin-top: 20px;align-content: center;">Hi, These are the books that you have added</h4>
-    <div class="row">
+</div>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Title</th>
+
+            <th>author</th>
+
+            <th>genre</th>
+
+            <th>publicationYear</th>
+
+            <th>image</th>
+
+            <th>isbn</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
         {%for book in books %}
+        <tr>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>
+            <td>{{book.publicationYear}}</td>
+            <td>
+                <a href="{{ book.image }}" target="_blank">
+                    <img src="{{ book.image }}" alt="Book Image" width="40">
+                </a>
+            </td>
 
-        <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src=" {{book.image}} " style="width: 290px; height: 150px"
-                    alt="Card image cap">
+            <td>{{book.isbn}}</td>
+            <td>
+                <div class="card-body">
+                    <form action="{{url_for('main.editBook',book_id=book.id)}}"
+                        onclick="return confirm('Are you sure')">
+                        <button class="btn btn-secondary" style="margin-left: 20px;" type="submit"
+                            onclick="return confirm('Are you sure?')">Edit</button>
+                    </form>
 
-                <div class="card-body">
-                    <h5 class="card-title">Title:{{book.title}}</h5>
-                    <p class="card-text">Author:{{book.author}}</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <!-- <li class="list-group-item">{{book.image}}</li> -->
-                    <li class="list-group-item">Genre:{{book.genre}}</li>
-                    <li class="list-group-item">Pulished Year:{{book.publicationYear}}</li>
-                    <li class="list-group-item">ISBN:{{book.isbn}}</li>
-                </ul>
-                <div class="card-body">
-                    <a href="{{url_for('main.editBook',book_id=book.id)}}" onclick="return confirm('Are you sure')"
-                        class="card-link">edit</a>
                     <form action="{{ url_for('main.deleteBook', book_id=book.id) }}" method="POST"
-                        style="display:inline;">
-                        <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                        style="display:flex;margin-left: 60px;margin-top:-38px;">
+                        <button class="btn btn-warning" type="submit"
+                            onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                 </div>
-            </div>
 
-
-
-        </div>
-        <div></div>
-        <div>
-        </div>
+            </td>
+        </tr>
         {% endfor %}
-
-        <div>
-            {% endblock %}
+    </tbody>
+</table>
+{% endblock %}
