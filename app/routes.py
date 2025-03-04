@@ -81,6 +81,16 @@ def deleteBook(book_id):
 
     return redirect(url_for('main.getBook'))
 
-@main.route('/bookHome')
+@main.route('/bookHome',methods=["Get"])
 def bookHome():
-    return render_template("BookManagement/bookList/getBook.html",title="BookList")
+    def getBook():
+        books_ref=db.collection("books")
+        docs=books_ref.stream()
+        books=[]
+        for doc in docs:
+            book=doc.to_dict()
+            book["id"]=doc.id
+            books.append(book)
+        return render_template("BookManagement/bookHome/bookHome.html",title="BookHome",books=books)
+    return getBook()
+

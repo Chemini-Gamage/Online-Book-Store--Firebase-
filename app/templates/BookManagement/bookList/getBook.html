@@ -1,21 +1,28 @@
-{% extends "base.html" %}
+<link rel="stylesheet" href="{{url_for('static',filename='css/getBook.css')}}">
+
 
 {% block content %}
-<h1>Book List</h1>
+<p style="margin-top: 20px;margin-left: 500px;">Book List</p>
+<div class="addButton">
+    <button>
+        <a href="/addBook" class="btn btn-primary">Add Book</a>
+    </button>
+
+</div>
 <table border="1">
     <thead>
         <tr>
             <th>Title</th>
 
-            <th>author</th>
+            <th>Author</th>
 
-            <th>genre</th>
+            <th>Genre</th>
 
-            <th>publicationYear</th>
+            <th>PublicationYear</th>
 
-            <th>image</th>
+            <th>Image</th>
 
-            <th>isbn</th>
+            <th>ISBN</th>
             <th>Actions</th>
 
         </tr>
@@ -23,19 +30,33 @@
     <tbody>
         {%for book in books %}
         <tr>
-            <td>{{book.title}}</td>>
-            <td>{{book.author}}</td>>
-            <td>{{book.genre}}</td>>
-            <td>{{book.publicationYear}}</td>>
-            <td>{{book.image}}</td>>
-            <td>{{book.isbn}}</td>>
+            <td>{{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.genre}}</td>
+            <td>{{book.publicationYear}}</td>
             <td>
-                <a href="{{url_for('main.editBook',book_id=book.id)}}" onclick="return confirm('Are you sure')">Edit</a>
-                <form action="{{ url_for('main.deleteBook', book_id=book.id) }}" method="POST" style="display:inline;">
-                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-                </form>
+                <a href="{{ book.image }}" target="_blank">
+                    <img src="{{ book.image }}" alt="Book Image" width="40">
+                </a>
+            </td>
 
-            </td>>
+            <td>{{book.isbn}}</td>
+            <td>
+                <div class="card-body">
+                    <form action="{{url_for('main.editBook',book_id=book.id)}}"
+                        onclick="return confirm('Are you sure')">
+                        <button class="btn btn-secondary" style="margin-left: 20px;" type="submit"
+                            onclick="return confirm('Are you sure?')">Edit</button>
+                    </form>
+
+                    <form action="{{ url_for('main.deleteBook', book_id=book.id) }}" method="POST"
+                        style="display:flex;margin-left: 60px;margin-top:-38px;">
+                        <button class="btn btn-warning" type="submit"
+                            onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </div>
+
+            </td>
         </tr>
         {% endfor %}
     </tbody>

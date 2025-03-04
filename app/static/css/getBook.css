@@ -1,0 +1,22 @@
+table {
+    table-layout: fixed;
+    width: 900px;
+    height: 500px;
+    margin-left: 80px;
+    padding: 2px
+}
+
+table th {
+    background-color: chartreuse;
+}
+
+table td {
+    margin-left: 200px;
+}
+
+.addButton {
+    margin-left: 200px;
+    margin-top: -20px;
+    display: flex;
+    margin-bottom: 20px
+}
