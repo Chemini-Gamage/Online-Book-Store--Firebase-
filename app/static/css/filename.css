@@ -67,3 +67,28 @@ body {
     color: rgb(13, 13, 123);
 }
 
+/* edit book */
+.form-group-1 {
+    margin-bottom: 80px;
+    width: 48%;
+    margin-top: 40px;
+
+}
+
+.form-group.custom-margin-6 {
+    margin-top: -290px;
+    margin-left: 480px;
+    width: 100%;
+}
+
+.form-group.custom-margin-7 {
+    margin-top: -118px;
+    margin-left: 480px;
+    width: 100%;
+}
+
+.form-group.custom-margin-8 {
+    margin-top: -110px;
+    width: 100%;
+    margin-left: 480px;
+}

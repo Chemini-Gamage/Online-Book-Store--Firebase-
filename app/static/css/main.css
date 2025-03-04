@@ -1,0 +1,142 @@
+.landing {
+    background-image: linear-gradient(to right, #fffcfc, #ffffff);
+}
+
+.container-carousel {
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    overflow: hidden;
+
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    /* Center vertically */
+    left: 50%;
+    /* Center horizontally */
+    transform: translate(-50%, -50%);
+    /* Adjust for perfect centering */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Dark transparent background */
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
+.carousel-inner img {
+    height: 400px;
+    /* Adjust height as needed */
+    object-fit: cover;
+    /* Ensures the image fills the space while maintaining aspect ratio */
+    border-radius: 10px;
+    /* Optional: Adds rounded corners */
+}
+
+
+
+.listContainer {
+    /* background-image: linear-gradient(to right, #fff8f6, #e5a9f7); */
+    display: grid;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.col2 card {
+    background-color: #240101;
+}
+
+.listContainer .col-md-6 {
+    height: fit-content;
+    /* background-image: linear-gradient(to right, #fff8f6, #240101); */
+
+}
+
+.card {
+    max-width: 800px;
+    /* Set a maximum width to keep it from growing too large */
+    height: 400px;
+    margin-left: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+}
+
+
+
+/* new one */
+.nav-title {
+    text-align: center;
+    font-weight: bolder;
+    size: 80
+}
+
+;
+
+.card {
+    border: 1px solid white;
+    /* White border */
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1000px;
+    /* Optional: Adjust width */
+    margin: auto;
+}
+
+.cardGrid {
+    display: flex;
+    margin-left: -300px;
+}
+
+.cardGrid .card img {
+    width: 200px;
+    height: 200px;
+}
+
+footer {
+    background-color: rgba(154, 173, 166, 0.658);
+}
+
+.icons {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    /* Adjust spacing */
+}
+
+.icons li {
+    display: inline-block;
+}
+
+.icons a {
+    text-decoration: none;
+    font-size: 24px;
+    /* Adjust icon size */
+    color: white;
+    /* Change icon color */
+    transition: color 0.3s ease-in-out;
+}
+
+.icons a:hover {
+    color: #f39c12;
+    /* Change color on hover */
+}
